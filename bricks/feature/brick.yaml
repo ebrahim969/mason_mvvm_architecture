@@ -26,8 +26,8 @@ environment:
 #  * a list of values (enums only)
 #  * an optional separator (list only)
 vars:
-  name:
+  featureName:
     type: string
-    description: Your name
-    default: Dash
-    prompt: What is your name?
+    description: Your feature name
+    default: splash
+    prompt: What is your feature name?
