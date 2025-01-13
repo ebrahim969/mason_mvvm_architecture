@@ -138,6 +138,9 @@ mason make readme -o ../
 assets:
   - i18n/
   - assets/
+  - assets/global_icon
+  -assets/images
+  -assets/svg
 
 fonts:
   - family: fontName
