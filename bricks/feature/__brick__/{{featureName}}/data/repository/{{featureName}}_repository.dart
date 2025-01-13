@@ -1,4 +1,3 @@
-import '../../domain/repository/{{featureName}}_repository.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
 import '../model/{{featureName}}_model.dart';

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -6,7 +5,6 @@ import '../services/injection_container.dart';
 import 'api_consumer.dart';
 import 'app_interceptors.dart';
 import 'end_points.dart';
-import 'status_code.dart';
 
 class DioConsumer implements ApiConsumer {
   final Dio client;
@@ -14,11 +12,7 @@ class DioConsumer implements ApiConsumer {
   DioConsumer({required this.client}) {
     client.options
       ..baseUrl = EndPoints.baseUrl
-      ..responseType = ResponseType.plain
-      ..followRedirects = false
-      ..validateStatus = (status) {
-        return status! < StatusCode.internalServerError;
-      };
+      ..followRedirects = false;
     client.interceptors.add(sl<AppInterceptors>());
     if (kDebugMode) {
       client.interceptors.addAll(kDebugMode
@@ -40,7 +34,7 @@ class DioConsumer implements ApiConsumer {
   @override
   Future get(String path, {Map<String, dynamic>? queryParameters}) async {
     final response = await client.get(path, queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
+    return response.data;
   }
 
   @override
@@ -48,10 +42,10 @@ class DioConsumer implements ApiConsumer {
       {Map<String, dynamic>? body,
       Map<String, dynamic>? queryParameters,
       bool? isFormData}) async {
-    final response = await client.post(path,
+    var response = await client.post(path,
         data: isFormData == true ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
+    return response.data;
   }
 
   @override
@@ -62,7 +56,7 @@ class DioConsumer implements ApiConsumer {
     final response = await client.put(path,
         data: isFormData == true ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
+    return response.data;
   }
 
   @override
@@ -73,11 +67,6 @@ class DioConsumer implements ApiConsumer {
     final response = await client.get(path,
         data: isFormData == true ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters);
-    return _handleResponseAsJson(response);
-  }
-
-  dynamic _handleResponseAsJson(Response<dynamic> response) {
-    final responseJson = jsonDecode(response.data.toString());
-    return responseJson;
+    return response.data;
   }
 }

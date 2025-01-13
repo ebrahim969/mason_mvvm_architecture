@@ -61,7 +61,7 @@ class AppInterceptors extends Interceptor {
         err.error == 'No Internet Connection') {
       showDialog(
         context: AppRouters.navigatorKey.currentContext!,
-        builder: (_) => const AlertDialog(
+        builder: (_) => AlertDialog(
           title: Text(AppLocaleKey.noInternet.tr()),
           content: Text(AppLocaleKey.pleasCheckYourConnectionAndTryAgain.tr()),
         ),
