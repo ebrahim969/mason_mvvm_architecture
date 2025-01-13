@@ -21,15 +21,15 @@ mason init
 ```yaml
 bricks:
   i18n:
-    path: D:/projects/bricks/i18n 
+    path: D:/projects/bricks/i18n (replace with real path)
   readme:
-    path: D:/projects/bricks/readme 
+    path: D:/projects/bricks/readme (replace with real path)
   assets:
-    path: D:/projects/bricks/assets 
+    path: D:/projects/bricks/assets (replace with real path)
   core:
-    path: D:/projects/bricks/core 
+    path: D:/projects/bricks/core (replace with real path)
   feature:
-    path: D:/projects/bricks/feature 
+    path: D:/projects/bricks/feature (replace with real path)
 ```
 
 ### get bricks
@@ -138,6 +138,9 @@ mason make readme -o ../
 assets:
   - i18n/
   - assets/
+  - assets/global_icon
+  -assets/images
+  -assets/svg
 
 fonts:
   - family: fontName
@@ -150,6 +153,12 @@ fonts:
         weight: 500
       - asset: assets/fonts/fontName/fontName-Bold.ttf
         weight: 600
+```
+
+### clear mason cache
+
+```shell
+mason cache clear
 ```
 
 ## create android flavors
@@ -174,8 +183,10 @@ fonts:
 ```shell
 android:label="@string/app_name"
 ```
-### clear mason cache
+
+### generate launch file (vscode configuration)
 
 ```shell
-mason cache clear
+mason make launch -o ../.vscode
 ```
+
