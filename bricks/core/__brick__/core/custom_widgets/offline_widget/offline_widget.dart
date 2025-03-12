@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../extension/context_extension.dart';
-
 import '../../images/app_images.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_theme.dart';
@@ -15,7 +14,6 @@ class OfflineWidget extends StatelessWidget {
     this.axis = Axis.vertical,
     this.onReload,
   });
-
   @override
   Widget build(BuildContext context) {
     switch (axis) {
@@ -30,7 +28,7 @@ class OfflineWidget extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  AppImages.globalIconOfflineIcon,
+                  AppImages.assetsGlobalIconOfflineIcon,
                   colorFilter: ColorFilter.mode(
                     AppTheme.getByTheme(
                       context,
@@ -66,7 +64,7 @@ class OfflineWidget extends StatelessWidget {
                 IconButton(
                   onPressed: onReload,
                   icon: SvgPicture.asset(
-                    AppImages.globalIconRefreshIcon,
+                    AppImages.assetsGlobalIconRefreshIcon,
                     colorFilter: ColorFilter.mode(
                       AppTheme.getByTheme(
                         context,
@@ -84,7 +82,6 @@ class OfflineWidget extends StatelessWidget {
             ),
           ),
         );
-
       case Axis.vertical:
         return Container(
           width: double.infinity,
@@ -97,7 +94,7 @@ class OfflineWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SvgPicture.asset(
-                AppImages.globalIconOfflineIcon,
+                AppImages.assetsGlobalIconOfflineIcon,
                 colorFilter: ColorFilter.mode(
                   AppTheme.getByTheme(
                     context,
@@ -135,7 +132,7 @@ class OfflineWidget extends StatelessWidget {
                   en: "Reload",
                 ),
                 prefixIcon: SvgPicture.asset(
-                  AppImages.globalIconRefreshIcon,
+                  AppImages.assetsGlobalIconRefreshIcon,
                   colorFilter: ColorFilter.mode(
                     AppColor.buttonTextColor(context),
                     BlendMode.srcIn,

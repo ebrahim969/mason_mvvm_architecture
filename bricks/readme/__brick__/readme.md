@@ -153,6 +153,12 @@ fonts:
         weight: 500
       - asset: assets/fonts/fontName/fontName-Bold.ttf
         weight: 600
+
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/images/
+  filename: app_images.dart
+  classname: AppImages   
 ```
 
 ### clear mason cache

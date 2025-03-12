@@ -10,10 +10,11 @@ import 'status_code.dart';
 
 class AppInterceptors extends Interceptor {
   AppInterceptors();
-
+  static bool isInternet = true;
   @override
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    isInternet = true;
     debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
 
     options.headers['Content-Type'] = 'application/json';
@@ -26,11 +27,12 @@ class AppInterceptors extends Interceptor {
 
     // Check internet connectivity before sending request
     if (!await CommonMethods.hasConnection()) {
+      isInternet = false;
       return handler.reject(
         DioException(
           requestOptions: options,
           error: 'No Internet Connection',
-          type: DioExceptionType.unknown,
+          type: DioExceptionType.connectionError,
         ),
       );
     }
@@ -44,7 +46,9 @@ class AppInterceptors extends Interceptor {
         'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
 
     if (response.statusCode == StatusCode.unauthorized) {
-      Navigator.of(AppRouters.navigatorKey.currentContext!).pushNamed('');
+      HiveMethods.deleteToken();
+      Navigator.of(AppRouters.navigatorKey.currentContext!)
+          .pushNamed(RoutesName.loginScreen);
       return;
     }
 
@@ -53,20 +57,23 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    debugPrint(
-        'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
-
-    // Handle no internet connection error
-    if (err.type == DioExceptionType.unknown &&
-        err.error == 'No Internet Connection') {
-      showDialog(
-        context: AppRouters.navigatorKey.currentContext!,
-        builder: (_) => AlertDialog(
-          title: Text(AppLocaleKey.noInternet.tr()),
-          content: Text(AppLocaleKey.pleasCheckYourConnectionAndTryAgain.tr()),
-        ),
-      );
+    if (err.response?.statusCode == StatusCode.unauthorized) {
+      Navigator.of(AppRouters.navigatorKey.currentContext!)
+          .pushNamed(RoutesName.loginScreen);
+      return;
     }
+    // debugPrint('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+
+    // // Handle no internet connection error
+    // if (err.type == DioExceptionType.unknown && err.error == 'No Internet Connection') {
+    //   showDialog(
+    //     context: AppRouters.navigatorKey.currentContext!,
+    //     builder: (_) => AlertDialog(
+    //       title: Text(AppLocaleKey.noInternet.tr()),
+    //       content: Text(AppLocaleKey.pleaaddNotesCheckYourConnectionAndTryAgain.tr()),
+    //     ),
+    //   );
+    // }
 
     super.onError(err, handler);
   }

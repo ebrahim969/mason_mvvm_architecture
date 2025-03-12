@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../extension/context_extension.dart';
-
 import '../../images/app_images.dart';
 import '../../theme/app_theme.dart';
-
 
 class NoDataWidget extends StatelessWidget {
   final Axis axis;
@@ -14,7 +12,6 @@ class NoDataWidget extends StatelessWidget {
     this.axis = Axis.vertical,
     this.message,
   });
-
   @override
   Widget build(BuildContext context) {
     switch (axis) {
@@ -23,14 +20,13 @@ class NoDataWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           decoration: BoxDecoration(
             //     color: AppColor.mainAppColor(context).withOpacity(0),
-
             borderRadius: BorderRadius.circular(7),
           ),
           child: IntrinsicHeight(
             child: Row(
               children: [
                 SvgPicture.asset(
-                  AppImages.globalIconEmptyFolderIcon,
+                  AppImages.assetsGlobalIconEmptyFolderIcon,
                   colorFilter: ColorFilter.mode(
                     AppTheme.getByTheme(
                       context,
@@ -70,7 +66,6 @@ class NoDataWidget extends StatelessWidget {
             ),
           ),
         );
-
       case Axis.vertical:
         return Container(
           width: double.infinity,
@@ -83,7 +78,7 @@ class NoDataWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SvgPicture.asset(
-                AppImages.globalIconEmptyFolderIcon,
+                AppImages.assetsGlobalIconEmptyFolderIcon,
                 colorFilter: ColorFilter.mode(
                   AppTheme.getByTheme(
                     context,

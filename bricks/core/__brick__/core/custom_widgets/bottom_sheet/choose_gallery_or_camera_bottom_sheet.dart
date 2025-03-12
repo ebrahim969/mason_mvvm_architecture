@@ -13,7 +13,6 @@ class ChooseGalleryOrCameraBottomSheet extends StatelessWidget {
     this.onCamera,
     this.onGallery,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +41,7 @@ class ChooseGalleryOrCameraBottomSheet extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          AppImages.globalIconCamera,
+                          AppImages.assetsGlobalIconCamera,
                           colorFilter: ColorFilter.mode(
                             AppColor.mainAppColor(context),
                             BlendMode.srcIn,
@@ -68,7 +67,7 @@ class ChooseGalleryOrCameraBottomSheet extends StatelessWidget {
                     child: Row(
                       children: [
                         SvgPicture.asset(
-                          AppImages.globalIconGallery,
+                          AppImages.assetsGlobalIconGallery,
                           colorFilter: ColorFilter.mode(
                             AppColor.mainAppColor(context),
                             BlendMode.srcIn,
