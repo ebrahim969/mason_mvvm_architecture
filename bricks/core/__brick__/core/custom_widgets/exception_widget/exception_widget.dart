@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../extension/context_extension.dart';
 
-
 import '../../images/app_images.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_theme.dart';
@@ -33,7 +32,7 @@ class ExceptionWidget extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                AppImages.globalIconErrorIcon,
+                  AppImages.assetsGlobalIconCamera,
                   colorFilter: ColorFilter.mode(
                     AppTheme.getByTheme(
                       context,
@@ -70,7 +69,7 @@ class ExceptionWidget extends StatelessWidget {
                 IconButton(
                   onPressed: onReload,
                   icon: SvgPicture.asset(
-                   AppImages.globalIconRefreshIcon,
+                    AppImages.assetsGlobalIconRefreshIcon,
                     colorFilter: ColorFilter.mode(
                       AppTheme.getByTheme(
                         context,
@@ -101,7 +100,7 @@ class ExceptionWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SvgPicture.asset(
-               AppImages.globalIconErrorIcon,
+                AppImages.assetsGlobalIconErrorIcon,
                 colorFilter: ColorFilter.mode(
                   AppTheme.getByTheme(
                     context,
@@ -140,7 +139,7 @@ class ExceptionWidget extends StatelessWidget {
                 ),
                 width: MediaQuery.of(context).size.width * 0.5,
                 prefixIcon: SvgPicture.asset(
-                  AppImages.globalIconRefreshIcon,
+                  AppImages.assetsGlobalIconRefreshIcon,
                   colorFilter: ColorFilter.mode(
                     AppColor.buttonTextColor(context),
                     BlendMode.srcIn,
