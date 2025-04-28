@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../enum/cubit_state/cubit_state.dart';
+import '../../enum/cubit_state/cubit_status.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_text_style.dart';
 import '../custom_loading/custom_loading.dart';
@@ -16,7 +16,7 @@ class CustomButton extends StatelessWidget {
   final Color? color;
   final Color? borderColor;
   final Gradient? gradient;
-  final CubitState? cubitState;
+  final CubitStatus? cubitState;
   final bool isLoading;
   final bool isMainColor;
   final bool hasShadow;
@@ -47,7 +47,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return cubitState== CubitState.loading || isLoading
+    return cubitState == CubitStatus.loading || isLoading
         ? const Center(
             child: CustomLoading(),
           )

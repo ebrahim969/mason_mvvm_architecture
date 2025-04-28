@@ -1,4 +1,4 @@
-enum CubitState {
+enum CubitStatus {
   sleep,
   loading,
   complete,

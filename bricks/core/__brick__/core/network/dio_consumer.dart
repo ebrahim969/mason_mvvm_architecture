@@ -1,7 +1,9 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import '../services/injection_container.dart';
+import '../services/service_locator.imports.dart';
 import 'api_consumer.dart';
 import 'app_interceptors.dart';
 import 'end_points.dart';
@@ -64,7 +66,7 @@ class DioConsumer implements ApiConsumer {
       {Map<String, dynamic>? body,
       Map<String, dynamic>? queryParameters,
       bool? isFormData}) async {
-    final response = await client.get(path,
+    final response = await client.delete(path,
         data: isFormData == true ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters);
     return response.data;

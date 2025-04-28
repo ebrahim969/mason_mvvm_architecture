@@ -8,7 +8,7 @@ import '../routes/app_routers_import.dart';
 import '../theme/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../locale/app_locale_key.dart';
-import '../services/injection_container.dart';
+import '../services/service_locator.imports.dart';
 
 
 class CommonMethods {

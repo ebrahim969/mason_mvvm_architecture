@@ -6,6 +6,7 @@ import '../cache/hive/hive_methods.dart';
 import '../locale/app_locale_key.dart';
 import '../routes/app_routers_import.dart';
 import '../utils/common_methods.dart';
+import '../utils/navigator_methods.dart';
 import 'status_code.dart';
 
 class AppInterceptors extends Interceptor {
@@ -47,8 +48,8 @@ class AppInterceptors extends Interceptor {
 
     if (response.statusCode == StatusCode.unauthorized) {
       HiveMethods.deleteToken();
-      Navigator.of(AppRouters.navigatorKey.currentContext!)
-          .pushNamed(RoutesName.loginScreen);
+      NavigatorMethods.pushNamedAndRemoveUntil(
+          AppRouters.navigatorKey.currentContext!, RoutesName.loginScreen);
       return;
     }
 
@@ -58,8 +59,9 @@ class AppInterceptors extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == StatusCode.unauthorized) {
-      Navigator.of(AppRouters.navigatorKey.currentContext!)
-          .pushNamed(RoutesName.loginScreen);
+      HiveMethods.deleteToken();
+      NavigatorMethods.pushNamedAndRemoveUntil(
+          AppRouters.navigatorKey.currentContext!, RoutesName.loginScreen);
       return;
     }
     // debugPrint('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');

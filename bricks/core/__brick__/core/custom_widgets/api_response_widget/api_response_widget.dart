@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../enum/cubit_state/cubit_state.dart';
+import '../../custom_widgets/offline_widget/offline_widget.dart';
+import '../../network/app_interceptors.dart';
+import '../../enum/cubit_state/cubit_status.dart';
 import '../custom_loading/custom_loading.dart';
 import '../exception_widget/exception_widget.dart';
 import '../no_data_widget/no_data_widget.dart';
 
 class ApiResponseWidget extends StatelessWidget {
-  final CubitState cubitState;
+  final CubitStatus cubitState;
   final Widget child;
   final double loadingSize;
   final Widget? loadingWidget;
@@ -42,34 +44,31 @@ class ApiResponseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (cubitState) {
-      case CubitState.sleep:
+      case CubitStatus.initial:
         if (initialChild) {
           return child;
         } else {
           return const SizedBox();
         }
-      case CubitState.loading:
+      case CubitStatus.loading:
         return loadingWidget ??
             Center(
-              child: CustomLoading(
-                size: loadingSize,
-                color: loadingColor,
-              ),
+              child: CustomLoading(size: loadingSize, color: loadingColor),
             );
-      case CubitState.complete:
-     
+      case CubitStatus.success:
         if (isEmpty) {
           return emptyWidget ??
-              Center(
-                child: NoDataWidget(
-                  message: noDataMessage,
-                  axis: axis,
-                ),
-              );
+              Center(child: NoDataWidget(message: noDataMessage, axis: axis));
         } else {
           return child;
         }
-      case CubitState.error:
+      case CubitStatus.failure:
+        if (AppInterceptors.isInternet == false) {
+          return Center(
+            child:
+                offlineWidget ?? OfflineWidget(onReload: onReload, axis: axis),
+          );
+        }
         return errorWidget ??
             Center(
               child: ExceptionWidget(
@@ -78,8 +77,6 @@ class ApiResponseWidget extends StatelessWidget {
                 onReload: onReload,
               ),
             );
-     
-   
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../enum/cubit_state/cubit_state.dart';
+import '../../enum/cubit_state/cubit_status.dart';
 import '../../extension/context_extension.dart';
 import '../../locale/app_locale_key.dart';
 import '../../theme/app_colors.dart';
@@ -12,7 +12,6 @@ import '../buttons/custom_button.dart';
 import '../custom_form_field/custom_form_field.dart';
 import 'custom_select_item.dart';
 import 'package:easy_localization/easy_localization.dart';
-
 
 class CustomMultiSelect extends StatefulWidget {
   final List<dynamic> value;
@@ -30,7 +29,7 @@ class CustomMultiSelect extends StatefulWidget {
   final Color? unFocusColor;
   final String? title;
   final String? otherSideTitle;
-  final CubitState? cubitState;
+  final CubitStatus? cubitState;
   final void Function()? onReload;
   final Widget? icon;
 
@@ -110,7 +109,7 @@ class _CustomMultiSelectState extends State<CustomMultiSelect> {
           TextFormField(
             controller: _selectedEC,
             validator: (v) => widget.validator?.call(widget.value),
-            onTap: widget.cubitState == CubitState.loading
+            onTap: widget.cubitState == CubitStatus.loading
                 ? null
                 : widget.items != null && widget.items?.isNotEmpty == true
                     ? () {
@@ -149,12 +148,21 @@ class _CustomMultiSelectState extends State<CustomMultiSelect> {
                       ? Colors.transparent
                       : AppColor.textFormFillColor(context)),
               filled: true,
-              border: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              disabledBorder: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              focusedBorder: _border(color: widget.unFocusColor ?? AppColor.mainAppColor(context)),
-              enabledBorder: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              suffixIconConstraints: BoxConstraints(maxWidth: widget.suffixIcon != null ? 110 : 40),
+              border: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              disabledBorder: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              focusedBorder: _border(
+                  color: widget.unFocusColor ?? AppColor.mainAppColor(context)),
+              enabledBorder: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              suffixIconConstraints: BoxConstraints(
+                  maxWidth: widget.suffixIcon != null ? 110 : 40),
               prefixIcon: widget.prefixIcon,
               suffixIcon: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -163,7 +171,7 @@ class _CustomMultiSelectState extends State<CustomMultiSelect> {
                     width: 35,
                     child: widget.cubitState != null
                         ? ApiResponseWidget(
-                           cubitState: widget.cubitState!,
+                            cubitState: widget.cubitState!,
                             onReload: widget.onReload,
                             isEmpty: false,
                             errorWidget: IconButton(
@@ -248,10 +256,12 @@ class CustomMultiSelectBottomSheet extends StatefulWidget {
   });
 
   @override
-  State<CustomMultiSelectBottomSheet> createState() => _CustomMultiSelectBottomSheetState();
+  State<CustomMultiSelectBottomSheet> createState() =>
+      _CustomMultiSelectBottomSheetState();
 }
 
-class _CustomMultiSelectBottomSheetState extends State<CustomMultiSelectBottomSheet> {
+class _CustomMultiSelectBottomSheetState
+    extends State<CustomMultiSelectBottomSheet> {
   List<dynamic> _initialValue = [];
   List<CustomSelectItem>? _items;
   @override
@@ -301,7 +311,10 @@ class _CustomMultiSelectBottomSheetState extends State<CustomMultiSelectBottomSh
                     unFocusColor: AppColor.offWhiteColor(context),
                     hintText: AppLocaleKey.search.tr(),
                     onChanged: (v) {
-                      _items = widget.items?.where((element) => element.name.toLowerCase().contains(v)).toList();
+                      _items = widget.items
+                          ?.where((element) =>
+                              element.name.toLowerCase().contains(v))
+                          .toList();
                       setState(() {});
                     },
                   ),
@@ -322,7 +335,8 @@ class _CustomMultiSelectBottomSheetState extends State<CustomMultiSelectBottomSh
                           color: Colors.transparent,
                           child: InkWell(
                             onTap: () {
-                              if (_initialValue.contains(_items?[index].value)) {
+                              if (_initialValue
+                                  .contains(_items?[index].value)) {
                                 setState(() {
                                   _initialValue.remove(_items?[index].value);
                                 });
@@ -351,11 +365,13 @@ class _CustomMultiSelectBottomSheetState extends State<CustomMultiSelectBottomSh
                                     width: 22,
                                     height: 22,
                                     decoration: BoxDecoration(
-                                      color: _initialValue.contains(_items?[index].value)
+                                      color: _initialValue
+                                              .contains(_items?[index].value)
                                           ? AppColor.mainAppColor(context)
                                           : AppColor.whiteColor(context),
                                       border: Border.all(
-                                        color: _initialValue.contains(_items?[index].value)
+                                        color: _initialValue
+                                                .contains(_items?[index].value)
                                             ? AppColor.mainAppColor(context)
                                             : AppColor.greyColor(context),
                                         width: 2,
@@ -363,10 +379,12 @@ class _CustomMultiSelectBottomSheetState extends State<CustomMultiSelectBottomSh
                                       borderRadius: BorderRadius.circular(5),
                                     ),
                                     child: Center(
-                                      child: _initialValue.contains(_items?[index].value)
+                                      child: _initialValue
+                                              .contains(_items?[index].value)
                                           ? Icon(
                                               Icons.check_rounded,
-                                              color: AppColor.whiteColor(context),
+                                              color:
+                                                  AppColor.whiteColor(context),
                                               size: 18,
                                             )
                                           : null,

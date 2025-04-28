@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../enum/cubit_state/cubit_state.dart';
+import '../../enum/cubit_state/cubit_status.dart';
 import '../../extension/context_extension.dart';
 import '../../locale/app_locale_key.dart';
 import '../../theme/app_colors.dart';
@@ -13,7 +13,6 @@ import '../api_response_widget/api_response_widget.dart';
 import '../buttons/custom_button.dart';
 import '../custom_form_field/custom_form_field.dart';
 import 'custom_select_item.dart';
-
 
 class CustomSingleSelect extends StatefulWidget {
   final dynamic value;
@@ -30,7 +29,7 @@ class CustomSingleSelect extends StatefulWidget {
   final Color? unFocusColor;
   final String? title;
   final String? otherSideTitle;
-  final CubitState? cubitState;
+  final CubitStatus? cubitState;
   final void Function()? onReload;
   final void Function()? onReInitial;
   final Widget? icon;
@@ -100,7 +99,7 @@ class _CustomSingleSelectState extends State<CustomSingleSelect> {
           TextFormField(
             controller: _selectedEC,
             validator: (v) => widget.validator?.call(widget.value),
-            onTap: widget.cubitState == CubitState.loading
+            onTap: widget.cubitState == CubitStatus.loading
                 ? null
                 : widget.items != null && widget.items?.isNotEmpty == true
                     ? () {
@@ -139,12 +138,21 @@ class _CustomSingleSelectState extends State<CustomSingleSelect> {
                       ? Colors.transparent
                       : AppColor.textFormFillColor(context)),
               filled: true,
-              border: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              disabledBorder: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              focusedBorder: _border(color: widget.unFocusColor ?? AppColor.mainAppColor(context)),
-              enabledBorder: _border(color: widget.unFocusColor ?? AppColor.textFormBorderColor(context)),
-              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              suffixIconConstraints: BoxConstraints(maxWidth: widget.suffixIcon != null ? 110 : 40),
+              border: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              disabledBorder: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              focusedBorder: _border(
+                  color: widget.unFocusColor ?? AppColor.mainAppColor(context)),
+              enabledBorder: _border(
+                  color: widget.unFocusColor ??
+                      AppColor.textFormBorderColor(context)),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              suffixIconConstraints: BoxConstraints(
+                  maxWidth: widget.suffixIcon != null ? 110 : 40),
               prefixIcon: widget.prefixIcon,
               suffixIcon: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -240,10 +248,12 @@ class CustomSingleSelectBottomSheet extends StatefulWidget {
   });
 
   @override
-  State<CustomSingleSelectBottomSheet> createState() => _CustomSingleSelectBottomSheetState();
+  State<CustomSingleSelectBottomSheet> createState() =>
+      _CustomSingleSelectBottomSheetState();
 }
 
-class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottomSheet> {
+class _CustomSingleSelectBottomSheetState
+    extends State<CustomSingleSelectBottomSheet> {
   dynamic _initialValue;
   List<CustomSelectItem>? _items;
   @override
@@ -280,7 +290,8 @@ class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottom
           ),
           Padding(
             padding: const EdgeInsets.all(10),
-            child: Text(AppLocaleKey.search.tr(), style: AppTextStyle.text16MSecond(context)),
+            child: Text(AppLocaleKey.search.tr(),
+                style: AppTextStyle.text16MSecond(context)),
           ),
           Padding(
             padding: const EdgeInsets.all(10),
@@ -305,7 +316,10 @@ class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottom
                     unFocusColor: AppColor.offWhiteColor(context),
                     hintText: tr(AppLocaleKey.search),
                     onChanged: (v) {
-                      _items = widget.items?.where((element) => element.name.toLowerCase().contains(v)).toList();
+                      _items = widget.items
+                          ?.where((element) =>
+                              element.name.toLowerCase().contains(v))
+                          .toList();
                       setState(() {});
                     },
                   ),
@@ -345,7 +359,8 @@ class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottom
                               }
                             },
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
                                 children: [
                                   _initialValue == _items?[index].value
@@ -353,14 +368,18 @@ class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottom
                                           width: 20.w,
                                           height: 20.h,
                                           decoration: BoxDecoration(
-                                            color: AppColor.mainAppColor(context),
+                                            color:
+                                                AppColor.mainAppColor(context),
                                             shape: BoxShape.circle,
-                                            border: Border.all(color: AppColor.greyColor(context)),
+                                            border: Border.all(
+                                                color: AppColor.greyColor(
+                                                    context)),
                                           ),
                                           child: Center(
                                             child: CircleAvatar(
                                               radius: 3.r,
-                                              backgroundColor: AppColor.whiteColor(context),
+                                              backgroundColor:
+                                                  AppColor.whiteColor(context),
                                             ),
                                           ),
                                         )
@@ -368,9 +387,12 @@ class _CustomSingleSelectBottomSheetState extends State<CustomSingleSelectBottom
                                           width: 20.w,
                                           height: 20.h,
                                           decoration: BoxDecoration(
-                                              color: AppColor.whiteColor(context),
+                                              color:
+                                                  AppColor.whiteColor(context),
                                               shape: BoxShape.circle,
-                                              border: Border.all(color: AppColor.greyColor(context))),
+                                              border: Border.all(
+                                                  color: AppColor.greyColor(
+                                                      context))),
                                         ),
                                   /*
                                   CircleAvatar(

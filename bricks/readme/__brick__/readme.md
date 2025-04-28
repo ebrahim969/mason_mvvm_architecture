@@ -136,11 +136,11 @@ mason make readme -o ../
 
 ```yaml
 assets:
-  - i18n/
-  - assets/
-  - assets/global_icon
-  -assets/images
-  -assets/svg
+    - i18n/
+    - assets/
+    - assets/global_icon/
+    - assets/images/
+    - assets/svg/
 
 fonts:
   - family: fontName

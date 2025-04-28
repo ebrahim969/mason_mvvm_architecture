@@ -38,7 +38,7 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == StatusCode.badRequest || statusCode == StatusCode.unauthorized || statusCode == StatusCode.forbidden) {
-      return ServerFailure(response['error']['message']);
+      return ServerFailure(response['message']);
     } else if (statusCode == StatusCode.notFound) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == StatusCode.internalServerError) {
