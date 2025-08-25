@@ -37,8 +37,21 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == StatusCode.badRequest || statusCode == StatusCode.unauthorized || statusCode == StatusCode.forbidden) {
-      return ServerFailure(response['message']);
+     if (statusCode == StatusCode.badRequest ||
+        statusCode == StatusCode.unauthorized ||
+        statusCode == StatusCode.forbidden ||
+        statusCode == StatusCode.unprocessable) {
+      if (response['errors'] is Map<String, dynamic>) {
+        Map<String, dynamic> error = response['errors'];
+        return ServerFailure(error.values.first[0]);
+      } else if (response['message'] is String) {
+        return ServerFailure(response['message']);
+      } else if (response['message'] is Map<String, dynamic>) {
+        Map<String, dynamic> error = response['message'];
+        return ServerFailure(error.values.first[0]);
+      } else {
+        return ServerFailure('Opps There was an Error, Please try again');
+      }
     } else if (statusCode == StatusCode.notFound) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == StatusCode.internalServerError) {

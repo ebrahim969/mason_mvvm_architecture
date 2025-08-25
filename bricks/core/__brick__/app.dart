@@ -11,19 +11,11 @@ import 'package:country_picker/country_picker.dart';
 class {{projectName.pascalCase()}} extends StatefulWidget {
   const {{projectName.pascalCase()}}({super.key});
 
-  static void setMyAppState(BuildContext context) async {
-    _{{projectName.pascalCase()}}State? state = context.findAncestorStateOfType<_{{projectName.pascalCase()}}State>();
-    state?.setMyAppState();
-  }
-
   @override
   State<{{projectName.pascalCase()}}> createState() => _{{projectName.pascalCase()}}State();
 }
 
 class _{{projectName.pascalCase()}}State extends State<{{projectName.pascalCase()}}> {
-  void setMyAppState() {
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {

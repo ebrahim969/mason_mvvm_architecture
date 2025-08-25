@@ -50,7 +50,6 @@ dependencies:
   bot_toast: ^4.1.3
   cached_network_image: ^3.3.1
   carousel_slider: ^5.0.0
-  change_app_package_name: ^1.3.0
   connectivity_plus: ^6.0.3
   country_picker: ^2.0.26
   crypto: ^3.0.5
@@ -58,6 +57,7 @@ dependencies:
   custom_timer: ^0.2.3
   dio: ^5.4.3+1
   easy_rich_text: ^2.1.0
+  flutter_staggered_animations: ^1.1.1
   firebase_core: ^3.4.0
   firebase_messaging: ^15.1.0
   flutter_bloc: ^8.1.6
