@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hareef/core/custom_widgets/custom_form_field/custom_form_field.dart';
-import 'package:hareef/core/enum/cubit_state/cubit_status.dart';
-import 'package:hareef/core/images/app_images.dart';
-import 'package:hareef/core/theme/app_colors.dart';
-import 'package:hareef/core/theme/app_text_style.dart';
+import '../custom_form_field/custom_form_field.dart';
+import '../../../../core/enum/cubit_state/cubit_status.dart';
+import '../../images/app_images.dart';
+import '../../theme/app_colors.dart';
+import '../../theme/app_text_style.dart';
 
 class CustomTextFormFieldDropdownOverlay extends StatefulWidget {
   final List<CustomSelectDropdownItem> items;
@@ -35,10 +35,12 @@ class CustomTextFormFieldDropdownOverlay extends StatefulWidget {
   });
 
   @override
-  State<CustomTextFormFieldDropdownOverlay> createState() => _CustomTextFormFieldDropdownOverlayState();
+  State<CustomTextFormFieldDropdownOverlay> createState() =>
+      _CustomTextFormFieldDropdownOverlayState();
 }
 
-class _CustomTextFormFieldDropdownOverlayState extends State<CustomTextFormFieldDropdownOverlay> {
+class _CustomTextFormFieldDropdownOverlayState
+    extends State<CustomTextFormFieldDropdownOverlay> {
   OverlayEntry? _overlayEntry;
   final LayerLink _layerLink = LayerLink();
   final TextEditingController _selectedItemEc = TextEditingController();
@@ -62,7 +64,9 @@ class _CustomTextFormFieldDropdownOverlayState extends State<CustomTextFormField
                 constraints: BoxConstraints(maxHeight: 250.h, minHeight: 50.h),
                 child: widget.items.isEmpty
                     ? const Center(
-                        child: Padding(padding: EdgeInsets.all(10.0), child: Text("لا يوجد بيانات")),
+                        child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text("لا يوجد بيانات")),
                       )
                     : Scrollbar(
                         interactive: true,
@@ -74,20 +78,26 @@ class _CustomTextFormFieldDropdownOverlayState extends State<CustomTextFormField
                             return InkWell(
                               onTap: () {
                                 setState(() {
-                                  _selectedItemEc.text = widget.items[index].name;
+                                  _selectedItemEc.text =
+                                      widget.items[index].name;
                                   value = widget.items[index].value;
                                 });
-                                widget.onItemSelected(widget.items[index].value);
+                                widget
+                                    .onItemSelected(widget.items[index].value);
                                 _isDropdownVisible.value = false;
                                 _removeOverlay();
                               },
                               child: Container(
                                 color: value == widget.items[index].value
-                                    ? AppColor.mainAppColor(context).withValues(alpha: .1)
+                                    ? AppColor.mainAppColor(context)
+                                        .withValues(alpha: .1)
                                     : Colors.transparent,
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-                                  child: Text(widget.items[index].name, style: AppTextStyle.text14BSecond(context)),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 10.w, vertical: 8.h),
+                                  child: Text(widget.items[index].name,
+                                      style:
+                                          AppTextStyle.text14BSecond(context)),
                                 ),
                               ),
                             );
@@ -144,7 +154,9 @@ class _CustomTextFormFieldDropdownOverlayState extends State<CustomTextFormField
                 builder: (BuildContext context, bool isVisible, _) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: isVisible
-                      ? RotatedBox(quarterTurns: 2, child: SvgPicture.asset(AppImages.assetsSvgArrowDown))
+                      ? RotatedBox(
+                          quarterTurns: 2,
+                          child: SvgPicture.asset(AppImages.assetsSvgArrowDown))
                       : SvgPicture.asset(AppImages.assetsSvgArrowDown),
                 ),
               ),

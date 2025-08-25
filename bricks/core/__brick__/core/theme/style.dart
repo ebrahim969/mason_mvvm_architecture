@@ -20,7 +20,8 @@ ThemeData appThemeData(BuildContext context) {
         buttonColor: AppColor.mainAppColor(context),
         alignedDropdown: true,
       ),
-      bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
+      bottomSheetTheme:
+          const BottomSheetThemeData(backgroundColor: Colors.white),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: AppColor.mainAppColor(context),
         secondary: AppColor.secondAppColor(context),
@@ -44,7 +45,7 @@ ThemeData appThemeData(BuildContext context) {
         cursorColor: AppColor.mainAppColor(context),
       ),
       platform: TargetPlatform.iOS,
-      tabBarTheme: TabBarTheme(
+      tabBarTheme: TabBarThemeData(
         dividerColor: Colors.transparent,
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: BoxDecoration(

@@ -55,6 +55,7 @@ dependencies:
   crypto: ^3.0.5
   cupertino_icons: ^1.0.6
   custom_timer: ^0.2.3
+  flutter_rating_bar: ^4.0.1
   dio: ^5.4.3+1
   easy_rich_text: ^2.1.0
   flutter_staggered_animations: ^1.1.1

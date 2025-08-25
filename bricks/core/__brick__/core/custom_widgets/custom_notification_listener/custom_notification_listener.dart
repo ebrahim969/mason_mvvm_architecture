@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:../../enum/cubit_state/cubit_status.dart';
+import '../../../../core/enum/cubit_state/cubit_status.dart';
 
 class CustomNotificationListener extends StatelessWidget {
   final Widget child;

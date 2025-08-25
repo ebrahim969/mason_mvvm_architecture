@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:core/routes/app_routers_import.dart';
-import 'package:features/settings/presentation/controller/profile/profile_cubit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,28 +32,26 @@ class NotificationHelper {
   void _initializeFirebaseMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       log("onMessage: $message");
-      AppRouters.navigatorKey.currentContext!
-          .read<ProfileCubit>()
-          .updateUserData(
-            AppRouters.navigatorKey.currentContext!
-                .read<ProfileCubit>()
-                .state
-                .userData!
-                .copyWith(
-                  unreadNotificationsCount: (AppRouters
-                              .navigatorKey.currentContext!
-                              .read<ProfileCubit>()
-                              .state
-                              .userData!
-                              .unreadNotificationsCount ??
-                          1) -
-                      1,
-                ),
-          );
-      // AppRouters.navigatorKey.currentContext!.read<SettingsCubit>().updateUnreadNotificationsCount(
-      //     AppRouters.navigatorKey.currentContext!.read<SettingsCubit>().general!.unreadNotificationsCount! + 1);
+      // AppRouters.navigatorKey.currentContext!
+      //     .read<ProfileCubit>()
+      //     .updateUserData(
+      //       AppRouters.navigatorKey.currentContext!
+      //           .read<ProfileCubit>()
+      //           .state
+      //           .userData!
+      //           .copyWith(
+      //             unreadNotificationsCount: (AppRouters
+      //                         .navigatorKey.currentContext!
+      //                         .read<ProfileCubit>()
+      //                         .state
+      //                         .userData!
+      //                         .unreadNotificationsCount ??
+      //                     1) -
+      //                 1,
+      //           ),
+      //     );
 
-      // display(message);
+      display(message);
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {

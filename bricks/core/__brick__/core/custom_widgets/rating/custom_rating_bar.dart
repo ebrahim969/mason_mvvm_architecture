@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hareef/core/images/app_images.dart';
+import '../../images/app_images.dart';
 
 class CustomRatingBar extends StatefulWidget {
   const CustomRatingBar({
