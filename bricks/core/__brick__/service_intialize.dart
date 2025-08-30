@@ -1,4 +1,5 @@
 import 'package:../../services/service_locator.imports.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +12,7 @@ class ServiceInitialize {
   static Future<void> initialize() async {
     //! Initialize all services here
     WidgetsFlutterBinding.ensureInitialized();
+    Bloc.observer = AppBlocObserver();
     await EasyLocalization.ensureInitialized();
     // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     await initDependencies();
