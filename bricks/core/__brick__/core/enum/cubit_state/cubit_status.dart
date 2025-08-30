@@ -1,6 +1,1 @@
-enum CubitStatus {
-  sleep,
-  loading,
-  complete,
-  error,
-}
+enum CubitStatus { initial, loading, success, failure }

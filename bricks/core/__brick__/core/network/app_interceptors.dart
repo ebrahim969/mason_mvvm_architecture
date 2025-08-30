@@ -8,6 +8,7 @@ import '../routes/app_routers_import.dart';
 import '../utils/common_methods.dart';
 import '../utils/navigator_methods.dart';
 import 'status_code.dart';
+import '../routes/routes_name.dart';
 
 class AppInterceptors extends Interceptor {
   AppInterceptors();

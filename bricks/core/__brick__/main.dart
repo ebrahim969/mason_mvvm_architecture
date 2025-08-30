@@ -19,9 +19,7 @@ void main() async {
       saveLocale: true,
       child: BlocProvider(
         create: (context) => AppThemeCubit()..initial(),
-        child: const {
-          {projectName.pascalCase()}
-        }(),
+        child: {{projectName.pascalCase()}}()
       ),
     ),
   );
