@@ -3,7 +3,6 @@ import 'dart:ui' as ui;
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gap/gap.dart';
 import '../../extension/context_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../theme/app_colors.dart';
@@ -108,7 +107,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
             ],
           ),
           if (widget.title != null || widget.otherSideTitle != null) ...{
-            const Gap(5),
+            const SizedBox(height: 5),
           },
           Directionality(
             textDirection: widget.textDirection != null

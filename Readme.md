@@ -119,6 +119,7 @@ dependencies:
   cupertino_icons: ^1.0.6 # Default iOS-style icons
   flutter_widget_from_html: ^0.15.1 # Render HTML content as Flutter widgets
   pinput: ^5.0.0 # Beautiful PIN code input widget
+  flutter_rating_bar: ^4.0.1 # Rating bar widget
 ```
 
 ### generate project template:

@@ -1,8 +1,10 @@
-import 'package:../../services/service_locator.imports.dart';
+import 'core/services/service_locator.imports.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/app_bloc_observer.dart/app_bloc_observer.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'core/theme/theme_enum.dart';

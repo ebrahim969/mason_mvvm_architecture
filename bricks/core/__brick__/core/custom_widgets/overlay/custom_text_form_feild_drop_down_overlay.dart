@@ -65,8 +65,9 @@ class _CustomTextFormFieldDropdownOverlayState
                 child: widget.items.isEmpty
                     ? const Center(
                         child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text("لا يوجد بيانات")),
+                          padding: EdgeInsets.all(10.0),
+                          child: Text("لا يوجد بيانات"),
+                        ),
                       )
                     : Scrollbar(
                         interactive: true,
@@ -82,22 +83,27 @@ class _CustomTextFormFieldDropdownOverlayState
                                       widget.items[index].name;
                                   value = widget.items[index].value;
                                 });
-                                widget
-                                    .onItemSelected(widget.items[index].value);
+                                widget.onItemSelected(
+                                  widget.items[index].value,
+                                );
                                 _isDropdownVisible.value = false;
                                 _removeOverlay();
                               },
                               child: Container(
                                 color: value == widget.items[index].value
-                                    ? AppColor.mainAppColor(context)
-                                        .withValues(alpha: .1)
+                                    ? AppColor.mainAppColor(
+                                        context,
+                                      ).withValues(alpha: .1)
                                     : Colors.transparent,
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 10.w, vertical: 8.h),
-                                  child: Text(widget.items[index].name,
-                                      style:
-                                          AppTextStyle.text14BSecond(context)),
+                                    horizontal: 10.w,
+                                    vertical: 8.h,
+                                  ),
+                                  child: Text(
+                                    widget.items[index].name,
+                                    style: AppTextStyle.text14MBlack(context),
+                                  ),
                                 ),
                               ),
                             );
@@ -156,7 +162,8 @@ class _CustomTextFormFieldDropdownOverlayState
                   child: isVisible
                       ? RotatedBox(
                           quarterTurns: 2,
-                          child: SvgPicture.asset(AppImages.assetsSvgArrowDown))
+                          child: SvgPicture.asset(AppImages.assetsSvgArrowDown),
+                        )
                       : SvgPicture.asset(AppImages.assetsSvgArrowDown),
                 ),
               ),
